@@ -363,6 +363,52 @@ span:hover { transform: scale(1.015) !important; }
   width: 100%;
   margin-top: 0.5rem;
 }
+.raia-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 22px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 12px;
+  background: white;
+}
+.project-card .raia-photo {
+  display: block;
+  width: 124px;
+  height: 124px;
+  object-fit: contain;
+  object-position: center;
+  background: #2f65a8;
+}
+.raia-brand span {
+  font-weight: 800;
+  color: #111;
+}
+.project-card .project-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 0.75rem 0 0.9rem;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+}
+.project-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0.75rem 0 0.9rem;
+}
+.project-gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+}
 .experience-card img:not(.card-logo) {
   width: 100%;
   max-height: 360px;

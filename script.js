@@ -7,16 +7,16 @@ let activeTypewriter = null;
 
 const typewriterText = {
   en: [
-    'AI & machine learning systems.',
-    'GenAI, RAG and LLM agents.',
-    'Computer vision and embedded AI.',
-    'Cloud, data and automation.'
+    'Applied AI engineering.',
+    'RAG, agents and automation.',
+    'Computer vision for real data.',
+    'Cloud pipelines and product prototypes.'
   ],
   pt: [
-    'Sistemas de IA e machine learning.',
-    'GenAI, RAG e agentes com LLMs.',
-    'Visão computacional e IA embarcada.',
-    'Cloud, dados e automação.'
+    'Engenharia de IA aplicada.',
+    'RAG, agentes e automação.',
+    'Visão computacional com dados reais.',
+    'Pipelines em cloud e protótipos de produto.'
   ]
 };
 
