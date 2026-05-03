@@ -141,6 +141,17 @@ img:hover { top: -8px; }
 }
 @keyframes blink { from, to { color: transparent; } 50% { color: black; } }
 
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 560ms ease, transform 560ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .typewrite {
   display: block;
   margin-top: 8px;
@@ -367,6 +378,7 @@ span:hover { transform: scale(1.015) !important; }
   padding: 0;
   position: relative;
   z-index: 1;
+  transition: opacity 560ms ease, transform 560ms ease;
 }
 
 .project-card:nth-child(even) { margin-top: 72px; }
@@ -402,9 +414,31 @@ span:hover { transform: scale(1.015) !important; }
   margin: 0 0 0.35rem;
   font-size: 1.05rem;
   letter-spacing: 0;
+  transition: color 180ms ease;
 }
 .project-card p { margin: 0 0 0.65rem; }
-.project-card img { border-radius: 12px; }
+.project-card img {
+  border-radius: 12px;
+  transition: filter 220ms ease, box-shadow 220ms ease, top ease 0.45s;
+}
+
+.project-card:hover h3 { color: var(--blue); }
+
+.project-card:hover img,
+.project-gallery:hover img {
+  filter: saturate(1.06) contrast(1.03);
+  box-shadow: 0 12px 28px rgba(41, 64, 98, 0.12);
+}
+
+.project-card.is-visible::before {
+  animation: nodePulse 720ms ease both;
+}
+
+@keyframes nodePulse {
+  0% { transform: scale(0.72); opacity: 0.45; }
+  65% { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
 .project-card > img,
 .project-card .btg-photo {
   width: 100%;
@@ -580,4 +614,16 @@ span:hover { transform: scale(1.015) !important; }
   .project-card:nth-child(even) { margin-top: 0; }
   .compact-grid .project-card:nth-child(even) { margin-top: 0; }
   span:hover { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .project-card.is-visible::before {
+    animation: none;
+  }
 }

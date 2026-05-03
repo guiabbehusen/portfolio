@@ -38,6 +38,30 @@ function setLanguage(language) {
 
 toggle.addEventListener('click', () => setLanguage(languageMap[currentLanguage]));
 
+function setupScrollReveal() {
+  const revealTargets = document.querySelectorAll('.section-2 > p, .section-2 h3, .experiences-box, .timeline-node, .project-card, .endnote');
+  revealTargets.forEach((element) => element.classList.add('reveal-on-scroll'));
+
+  const pendingTargets = new Set(revealTargets);
+  function revealVisible() {
+    const revealOffset = window.innerHeight * 0.88;
+    pendingTargets.forEach((element) => {
+      if (element.getBoundingClientRect().top > revealOffset) return;
+      element.classList.add('is-visible');
+      pendingTargets.delete(element);
+    });
+
+    if (pendingTargets.size === 0) {
+      window.removeEventListener('scroll', revealVisible);
+      window.removeEventListener('resize', revealVisible);
+    }
+  }
+
+  revealVisible();
+  window.addEventListener('scroll', revealVisible, { passive: true });
+  window.addEventListener('resize', revealVisible);
+}
+
 const messageBox = document.getElementById('message-box');
 document.querySelectorAll('.hover-item').forEach((item) => {
   item.addEventListener('mouseenter', (event) => {
@@ -94,6 +118,7 @@ window.addEventListener('load', () => {
     window.scroll({ top: 0, left: 0, behavior: 'auto' });
   }
   setLanguage('pt');
+  setupScrollReveal();
 });
 
 const canvas = document.getElementById('particles-js');
