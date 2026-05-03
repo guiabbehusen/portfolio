@@ -1,5 +1,5 @@
 const languageMap = { en: 'pt', pt: 'en' };
-let currentLanguage = 'en';
+let currentLanguage = 'pt';
 const toggle = document.getElementById('language-toggle');
 const translatable = document.querySelectorAll('[data-en][data-pt]');
 const typewriteElement = document.querySelector('.typewrite');
@@ -29,7 +29,10 @@ function setLanguage(language) {
     const message = element.dataset[key];
     if (message) element.dataset.message = message;
   });
-  toggle.textContent = language === 'en' ? 'PT' : 'EN';
+  const targetLanguage = languageMap[language];
+  toggle.textContent = targetLanguage === 'pt' ? '🇧🇷 PT' : '🇺🇸 EN';
+  toggle.setAttribute('aria-label', targetLanguage === 'pt' ? 'Mudar idioma para português' : 'Switch language to English');
+  toggle.setAttribute('title', targetLanguage === 'pt' ? 'Mudar para português' : 'Switch to English');
   restartTypewriter(language);
 }
 
@@ -87,8 +90,10 @@ function restartTypewriter(language) {
 }
 
 window.addEventListener('load', () => {
-  window.scroll({ top: 0, left: 0, behavior: 'instant' });
-  setLanguage('en');
+  if (!window.location.hash) {
+    window.scroll({ top: 0, left: 0, behavior: 'auto' });
+  }
+  setLanguage('pt');
 });
 
 const canvas = document.getElementById('particles-js');
